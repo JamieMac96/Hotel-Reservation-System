@@ -11,7 +11,7 @@ public class AnalyticsGenerator{
     this.cReader = cReader;
   }
 
-  public void getHotelOccupancyAnalytics(DateRange chosenRange){
+  public void displayHotelOccupancyAnalytics(DateRange chosenRange){
     System.out.println("HOTEL OCCUPANCY ANALYTICS FROM: " + chosenRange.getStartDateString() + " TO: " + chosenRange.getEndDateString());
     System.out.println("********************************************************************************************************************");
 
@@ -19,7 +19,7 @@ public class AnalyticsGenerator{
     System.out.println("********************************************************************************************************************");
   }
 
-  public void getRoomOccupancyAnalytics(DateRange chosenRange){
+  public void displayRoomOccupancyAnalytics(DateRange chosenRange){
     System.out.println("ROOM OCCUPANCY ANALYTICS FROM: " + chosenRange.getStartDateString() + " TO: " + chosenRange.getEndDateString());
     System.out.println("********************************************************************************************************************");
 
@@ -27,7 +27,7 @@ public class AnalyticsGenerator{
     System.out.println("********************************************************************************************************************");
   }
 
-  public void getFinancialAnalytics(DateRange chosenRange){
+  public void displayFinancialAnalytics(DateRange chosenRange){
     System.out.println("FINANCIAL ANALYTICS FROM: " + chosenRange.getStartDateString() + " TO: " + chosenRange.getEndDateString());
     System.out.println("********************************************************************************************************************");
 

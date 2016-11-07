@@ -50,7 +50,7 @@ public class HotelReservationSystem{
     choice = userInputReader.getValidLoginChoice();
 
     while(choice != 4){
-      getLoginDetails(userTypes[choice - 1]);
+      loginUser(userTypes[choice - 1]);
       if(choice == 1){
         subMenuLoopProcess(EXITVAL_CUSTOMER);
       }
@@ -86,7 +86,7 @@ public class HotelReservationSystem{
         checkOutCustomer();
       }
       else if(choice == 5){
-        getAnalytics();
+        displayAnalytics();
       }
       else if(choice == 6){
         rReader.applyDiscount();
@@ -118,44 +118,32 @@ public class HotelReservationSystem{
     stayWriter.checkOutCustomer(rReader, sReader);
   }
 
-  private void getAnalytics(){
+  private void displayAnalytics(){
     int choice = -1;
     menuPrinter.printAnalyticsMenu();
     choice = userInputReader.getValidAnalyticsChoice();
     while(choice != 4){
       DateRange chosenRange = userInputReader.getValidDateRange();//we are allowing the user to enter a range regardless of choice.
       if(choice == 1){
-          aGenerator.getHotelOccupancyAnalytics(chosenRange);
+          aGenerator.displayHotelOccupancyAnalytics(chosenRange);
       }
       else if(choice == 2){
-        aGenerator.getRoomOccupancyAnalytics(chosenRange);
+        aGenerator.displayRoomOccupancyAnalytics(chosenRange);
       }
       else if(choice == 3){
-        aGenerator.getFinancialAnalytics(chosenRange);
+        aGenerator.displayFinancialAnalytics(chosenRange);
       }
       menuPrinter.printAnalyticsMenu();
       choice = userInputReader.getValidAnalyticsChoice();
     }
   }
 
-  private void getLoginDetails(String userType){
-    /*Note: although I have tried to keep validation out of This
-      class(and in the inputreader/InputValidator classes) I decided
-      to do a bit of validtion here as not to add unnescessary dependencies
-      to the InputReader class.*/
-
-    String username,password;
-
-    username = userInputReader.readUsername();
-    password = userInputReader.readPassword();
-
-    User enteredUser = new User(userType, username, password);
+  private void loginUser(String userType){
+    User enteredUser = new User(userType, userInputReader.readUsername(), userInputReader.readPassword());
 
     while(!userReader.userExists(enteredUser)){
       System.out.println("Error: Invalid username or password.");
-      username = userInputReader.readUsername();
-      password = userInputReader.readPassword();
-      enteredUser = new User(userType, username, password);
+      enteredUser = new User(userType, userInputReader.readUsername(), userInputReader.readPassword());
     }
   }
 

@@ -52,31 +52,18 @@ public class HotelReservationSystem{
     while(choice != 4){
       getLoginDetails(userTypes[choice - 1]);
       if(choice == 1){
-        handleCustomer();
+        subMenuLoopProcess(EXITVAL_CUSTOMER);
       }
       else if(choice == 2){
-        handleDeskAdministrator();
+        subMenuLoopProcess(EXITVAL_DESKADMIN);
       }
       else if(choice == 3){
-        handleSupervisor();
+        subMenuLoopProcess(EXITVAL_SUPERVISOR);
       }
       menuPrinter.printLoginMenu();
       choice = userInputReader.getValidLoginChoice();
     }
     System.out.println("\n*********   LOGGING OFF...           ");
-  }
-
-  private void handleCustomer(){
-    subMenuLoopProcess(EXITVAL_CUSTOMER);
-
-  }
-
-  private void handleDeskAdministrator(){
-    subMenuLoopProcess(EXITVAL_DESKADMIN);
-  }
-
-  private void handleSupervisor(){
-    subMenuLoopProcess(EXITVAL_SUPERVISOR);
   }
 
   private void subMenuLoopProcess(int exitValue){
@@ -102,10 +89,10 @@ public class HotelReservationSystem{
         getAnalytics();
       }
       else if(choice == 6){
-        applyDiscount();
+        rReader.applyDiscount();
       }
       else if(choice == 7){
-        discardExpiredReservations();
+        rReader.removeExpiredReservations();
       }
       printCorrectMenu(exitValue);
       choice = userInputReader.getValidUserMenuChoice(exitValue);
@@ -138,38 +125,17 @@ public class HotelReservationSystem{
     while(choice != 4){
       DateRange chosenRange = userInputReader.getValidDateRange();//we are allowing the user to enter a range regardless of choice.
       if(choice == 1){
-        getHotelOccupancyRates(chosenRange);
+          aGenerator.getHotelOccupancyAnalytics(chosenRange);
       }
       else if(choice == 2){
-        getRoomOccupancyRates(chosenRange);
+        aGenerator.getRoomOccupancyAnalytics(chosenRange);
       }
       else if(choice == 3){
-        getFinancialAnalytics(chosenRange);
+        aGenerator.getFinancialAnalytics(chosenRange);
       }
       menuPrinter.printAnalyticsMenu();
       choice = userInputReader.getValidAnalyticsChoice();
     }
-  }
-
-  private void applyDiscount(){
-    rReader.applyDiscount();
-  }
-
-  private void getHotelOccupancyRates(DateRange chosenRange){
-    aGenerator.getHotelOccupancyAnalytics(chosenRange);
-
-  }
-
-  private void getRoomOccupancyRates(DateRange chosenRange){
-    aGenerator.getRoomOccupancyAnalytics(chosenRange);
-  }
-
-  private void getFinancialAnalytics(DateRange chosenRange){
-    aGenerator.getFinancialAnalytics(chosenRange);
-  }
-
-  private void discardExpiredReservations(){
-    rReader.removeExpiredReservations();
   }
 
   private void getLoginDetails(String userType){

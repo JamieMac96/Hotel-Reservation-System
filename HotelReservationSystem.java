@@ -9,6 +9,7 @@ import java.util.Scanner;
  * to contain all the information of a reservation.
 */
 public class HotelReservationSystem{
+  private ConstantUtils utils;
   private UserReader userReader;
   private ReservationReader rReader;
   private HotelReader hReader;
@@ -26,14 +27,15 @@ public class HotelReservationSystem{
   //private AnalyticsGenerator aGenerator;
 
   public HotelReservationSystem(){
-    userReader = new UserReader("resources/SystemUsers.csv");
-    rReader = new ReservationReader("resources/Reservations.csv");
-    hReader = new HotelReader("resources/l4Hotels.csv");
+    utils = new ConstantUtils();
+    userReader = new UserReader(utils.USERS_FILE);
+    rReader = new ReservationReader(utils.RESERVATIONS_FILE);
+    hReader = new HotelReader(utils.HOTELS_FILE);
     userInputReader = new InputReader();
-    sReader = new StayReader("resources/Stays.csv");
-    cReader = new CancellationReader("resources/Cancellations.csv");
-    reservationWriter = new ReservationWriter("resources/Reservations.csv");
-    stayWriter = new StayWriter("resources/Stays.csv");
+    sReader = new StayReader(utils.STAYS_FILE);
+    cReader = new CancellationReader(utils.CANCELLATIONS_FILE);
+    reservationWriter = new ReservationWriter(utils.RESERVATIONS_FILE);
+    stayWriter = new StayWriter(utils.STAYS_FILE);
     menuPrinter = new MenuPrinter();
     aGenerator = new AnalyticsGenerator(hReader,rReader, sReader, cReader);
   }
@@ -52,13 +54,13 @@ public class HotelReservationSystem{
     while(choice != 4){
       loginUser(userTypes[choice - 1]);
       if(choice == 1){
-        subMenuLoopProcess(EXITVAL_CUSTOMER);
+        subMenuLoopProcess(utils.EXITVAL_CUSTOMER);
       }
       else if(choice == 2){
-        subMenuLoopProcess(EXITVAL_DESKADMIN);
+        subMenuLoopProcess(utils.EXITVAL_DESKADMIN);
       }
       else if(choice == 3){
-        subMenuLoopProcess(EXITVAL_SUPERVISOR);
+        subMenuLoopProcess(utils.EXITVAL_SUPERVISOR);
       }
       menuPrinter.printLoginMenu();
       choice = userInputReader.getValidLoginChoice();
@@ -125,13 +127,13 @@ public class HotelReservationSystem{
     while(choice != 4){
       DateRange chosenRange = userInputReader.getValidDateRange();//we are allowing the user to enter a range regardless of choice.
       if(choice == 1){
-          aGenerator.displayHotelOccupancyAnalytics(chosenRange);
+        aGenerator.outputHotelOccupancyAnalytics(chosenRange);
       }
       else if(choice == 2){
-        aGenerator.displayRoomOccupancyAnalytics(chosenRange);
+        aGenerator.outputRoomOccupancyAnalytics(chosenRange);
       }
       else if(choice == 3){
-        aGenerator.displayFinancialAnalytics(chosenRange);
+        aGenerator.outputFinancialAnalytics(chosenRange);
       }
       menuPrinter.printAnalyticsMenu();
       choice = userInputReader.getValidAnalyticsChoice();
@@ -148,10 +150,10 @@ public class HotelReservationSystem{
   }
 
   private void printCorrectMenu(int exitValue){
-    if(exitValue == EXITVAL_CUSTOMER){
+    if(exitValue == utils.EXITVAL_CUSTOMER){
       menuPrinter.printCustomerMenu();
     }
-    else if(exitValue == EXITVAL_SUPERVISOR){
+    else if(exitValue == utils.EXITVAL_SUPERVISOR){
       menuPrinter.printSupervisorMenu();
     }
     else{

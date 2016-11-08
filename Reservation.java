@@ -67,12 +67,20 @@ public class Reservation{
     return numberOfNights;
   }
 
+  public int getNumberOfRooms(){
+    return numberOfRooms;
+  }
+
   public double getTotalCost(){
     return totalCost;
   }
 
   public double getDeposit(){
     return deposit;
+  }
+
+  public String getRoomType(){
+    return rooms[0].getRoomType();
   }
 
   public void setRooms(Room[] rooms){
@@ -119,7 +127,7 @@ public class Reservation{
   }
 
   public String toString(){
-    String reservationInfoAsString = reservationNumber + "," + reservationName + "," + reservationType + "," + checkInDate.getDate() +
+    String reservationInfoAsString = reservationNumber + "," + reservationName + "," + reservationType + "," + checkInDate.getDateString() +
                                       "," + numberOfNights + "," + numberOfRooms + ",";
 
     for(int i = 0; i < rooms.length; i++){

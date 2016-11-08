@@ -2,12 +2,12 @@ import java.util.Arrays;
 
 public class RoomType{
   private String type;
-  private String numberOfRooms;
+  private int numberOfRooms;
   private String occupancyMin;
   private String occupancyMax;
   private double [] dailyCosts = new double[7];
 
-  public RoomType(String type, String numberOfRooms, String occupancyMin, String occupancyMax, double[] dailyCosts){
+  public RoomType(String type, int numberOfRooms, String occupancyMin, String occupancyMax, double[] dailyCosts){
     this.type = type;
     this.numberOfRooms = numberOfRooms;
     this.occupancyMin = occupancyMin;
@@ -18,6 +18,10 @@ public class RoomType{
 
   public String getType(){
     return type;
+  }
+
+  public int getNumberOfRooms(){
+    return numberOfRooms;
   }
 
   public double getCostForDay(int dayOfWeekIndex){

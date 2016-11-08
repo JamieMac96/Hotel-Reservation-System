@@ -24,4 +24,22 @@ public class Hotel{
   public void addRoomType(RoomType newRoom){
     roomTypes.add(newRoom);
   }
+
+  public int getTotalNumberOfRooms(){
+    int total = 0;
+
+    for(int i = 0; i < roomTypes.size(); i++){
+      total += roomTypes.get(i).getNumberOfRooms();
+    }
+    return total;
+  }
+
+  public boolean hasRoomType(String roomType){
+    for(int i = 0; i < roomTypes.size(); i++){
+      if(roomTypes.get(i).getType().equals(roomType)){
+        return true;
+      }
+    }
+    return false;
+  }
 }

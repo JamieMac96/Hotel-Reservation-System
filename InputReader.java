@@ -86,10 +86,10 @@ public class InputReader{
   public Stay readInValidStay(ReservationReader rReader){
     Stay userInputStay;
     Reservation chosenRes;
-    System.out.println("\n************************** REQUESTING CHECK-IN INFO **************************");
+    System.out.println("\n************************** REQUESTING CHECK-IN/OUT INFO **************************");
     System.out.print("Enter the reservation number of the reservation you are checking in for: ");
     chosenRes = getReservationFromUserInputReservationNumber(rReader);
-    System.out.println("******************************************************************************\n");
+    System.out.println("**********************************************************************************\n");
 
     userInputStay = new Stay(chosenRes);
 
@@ -97,7 +97,7 @@ public class InputReader{
   }
 
   public void printDiscountStartPrompt(){
-    System.out.println("**************************  REQUESTING DISCOUNT INFO **************************");
+    System.out.println("\n**************************  REQUESTING DISCOUNT INFO **************************");
   }
 
   public Reservation getReservationToBeDiscounted(ReservationReader rReader){
@@ -115,7 +115,7 @@ public class InputReader{
   }
 
   public DateRange getValidDateRange(){
-    System.out.println("**************************  REQUESTING DATE INFO **************************");
+    System.out.println("\n**************************  REQUESTING DATE INFO *************************");
 
     System.out.print("Enter the start date: ");
     Date startDate = getValidDate();

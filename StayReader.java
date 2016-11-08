@@ -13,14 +13,17 @@ public class StayReader{
     readInFileData();
   }
 
+  public ArrayList<Stay> getStayInfo(){
+    return stays;
+  }
 
-  public boolean stayExists(Stay stay){
+  public int getIndex(Stay stay){
     for(int i = 0; i < stays.size(); i++){
       if(stay.equals(stays.get(i))){
-        return true;
+        return i;
       }
     }
-    return false;
+    return -1;
   }
 
   private void readInFileData(){

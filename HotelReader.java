@@ -63,7 +63,7 @@ public class HotelReader{
            hotelInfo.add(new Hotel(lineSplit[0]));
            numberOfHotels++;
          }
-         hotelInfo.get(numberOfHotels - 1).addRoomType(new RoomType(lineSplit[1], lineSplit[2], lineSplit[3], lineSplit[4], dailyRoomCosts));
+         hotelInfo.get(numberOfHotels - 1).addRoomType(new RoomType(lineSplit[1], Integer.parseInt(lineSplit[2]), lineSplit[3], lineSplit[4], dailyRoomCosts));
        }
      }
       catch(IOException e){

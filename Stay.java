@@ -21,11 +21,27 @@ public class Stay{
     checkOutDate = expectedCheckoutDate;
   }
 
+  public Date getCheckInDate(){
+    return checkInDate;
+  }
+
+  public Date getCheckOutDate(){
+    return checkOutDate;
+  }
+
+  public String getRoomType(){
+    return reservation.getRoomType();
+  }
+
+  public int getNumberOfRooms(){
+    return reservation.getNumberOfRooms();
+  }
+
   public String toString(){
     String reservationString = reservation.toString();
     String partRequired = reservationString.substring(0,reservationString.length() - 2);//removes ",f" or ",t"
 
-    return partRequired + "," + checkInDate.getDate() + "," + checkOutDate.getDate();
+    return partRequired + "," + checkInDate.getDateString() + "," + checkOutDate.getDateString();
   }
 
   public boolean equals(Stay stay){

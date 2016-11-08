@@ -11,13 +11,18 @@ public class Date{
   public Date(String date){
     this.date = date;
     myCalendar = new GregorianCalendar();
+    if(isValid()){
+      if(isLeapYear()){
+        daysPerMonth[1] = 29;
+      }
+    }
   }
 
   public Date(int dayOfMonth, int month, int year){
-    date = dayOfMonth + "/" + month + "/" + year;
+    date = dayOfMonth + "-" + month + "-" + year;
   }
 
-  public String getDate(){
+  public String getDateString(){
     return date;
   }
 
@@ -50,20 +55,17 @@ public class Date{
     int currentMonth = (staticCal.get(Calendar.MONTH) + 1);
     int currentYear = staticCal.get(Calendar.YEAR);
 
-    return new Date(currentYear, currentMonth, currentDay);
+    return new Date(currentDay, currentMonth, currentYear);
   }
 
   public boolean isValid(){
     boolean valid = false;
-    String dateRegex = "\\d{1,2}/\\d{1,2}/\\d{4}";
+    String dateRegex = "\\d{1,2}-\\d{1,2}-\\d{4}";
     int [] daysPerMonth = {31,28,31,30,31,30,31,31,30,31,30,31};
 
     if(date.matches(dateRegex)){
       int dayOfMonth = getDay();
       int month = getMonth();
-      if(isLeapYear()){
-        daysPerMonth[1] = 29;
-      }
       if(month <= 12){
         if(daysPerMonth[month-1] >= dayOfMonth){
           valid = true;
@@ -75,8 +77,11 @@ public class Date{
 
 
   public boolean isLeapYear(){
+   return isLeapYear(getYear());
+ }
+
+ public static boolean isLeapYear(int year){
    boolean leapYear = false;
-   int year = getYear();
 
    if(year % 4 == 0){
      leapYear = true;
@@ -182,6 +187,33 @@ public class Date{
     return beforeOrEqual;
   }
 
+  public boolean isAfterOrEqual(Date comparisonDate){
+    boolean afterOrEqual = false;
+    int comparisonYear = comparisonDate.getYear();
+    int comparisonMonth = comparisonDate.getMonth();
+    int comparisonDay = comparisonDate.getDay();
+    int year = getYear();
+    int month = getMonth();
+    int day = getDay();
+
+
+    if(comparisonYear > year){
+      afterOrEqual = true;
+    }
+    else if(comparisonYear == year){
+      if(comparisonMonth > month){
+        afterOrEqual = true;
+      }
+      else if(comparisonMonth == month){
+        if(comparisonDay >= day){
+          afterOrEqual = true;
+        }
+      }
+    }
+
+    return afterOrEqual;
+  }
+
   public void incrementDays(int numberOfDays){
     int currentDay = getDay();
     int currentMonth = getMonth();
@@ -197,11 +229,21 @@ public class Date{
       currentMonth -= 12;
     }
 
-    date = currentDay + "/" + currentMonth + "/" + currentYear;
+    date = currentDay + "-" + currentMonth + "-" + currentYear;
+  }
+
+  public int getDaysSinceStartOfYear(){
+    int daysSinceStartOfYear = 0;
+
+    for(int i = 0; i < getMonth(); i++){
+      daysSinceStartOfYear += daysPerMonth[i];
+    }
+    daysSinceStartOfYear += getDay();
+    return daysSinceStartOfYear;
   }
 
   private int dateComponentToInteger(int componentIndex){
-    String [] dateSplit = date.split("/");
+    String [] dateSplit = date.split("-");
     return Integer.parseInt(dateSplit[componentIndex]);
   }
 

@@ -54,7 +54,7 @@ public class MenuPrinter{
                           "3.Financial analytics",
                           "4.Go back",
                           "************************************",
-                          "Please enteer your choice: "};
+                          "Please enter your choice: "};
     printMenu(messages);
   }
 

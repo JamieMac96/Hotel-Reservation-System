@@ -4,6 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ *The class Hotel has the responsibility of storing all the current info on hotels so that other parts of the program can use it.
+ *
+ *@author Jamie Mac Manus
+ *@version 1.0
+ *@since 2016-11-10
+ */
 public class HotelReader{
   private String fileString;
   private ArrayList<Hotel> hotelInfo;
@@ -14,25 +21,30 @@ public class HotelReader{
     readInFileData();
   }
 
-
-/*  public boolean hotelExists(Hotel hotel){
-    for(int i = 0; i < hotelInfo.size(); i++){
-      if(hotel.equals(hotelInfo.get(i))){
-        return true;
-      }
-    }
-    return false;
-  }*/
-
-
+  /**
+   * Returns the hotel at a certain index.
+   * @param  index the index of the hotel we are requesting.
+   * @return  the hotel at the given index or null if the index does not exist.
+   */
   public Hotel getHotel(int index){
-    return hotelInfo.get(index);
+    if(index < hotelInfo.size()){
+      return hotelInfo.get(index);
+    }
+    return null;
   }
 
-
+  /**
+   * returns all the info on the hotels.
+   * @return hotelInfo an ArrayList of Hotel that contains the info on the hotels.
+   */
   public ArrayList<Hotel> getHotelInfo(){
     return hotelInfo;
   }
+
+  /**
+   * returns all the room types in the system.
+   * @return roomTypes all the room types in the system.
+   */
 
   public ArrayList<RoomType> getAllRoomTypes(){
     ArrayList<RoomType> roomTypes = new ArrayList<RoomType>();

@@ -1,16 +1,24 @@
 import java.util.Scanner;
 
-/**********************************************
- *Notes:
+/*Notes:
+ *
  *-we can read the names of  the files in resources and user that to
  * create the readers/writers instead of manually entering them.
  *-reservations are removed from the system after a month presuming they have been processed
  * ie converted to a cancellation or a stay. This means that stays and cancellations will need
  * to contain all the information of a reservation.
  *
- *
  * -reservations that are already stays can be cancelled. and vice versa
+ * -hven't yet allowed users to clear stays/cancellations.
 */
+
+/**
+ *The class HotelReservationSystem has the responsibility of running the reservation system..
+ *
+ *@author Jamie Mac Manus
+ *@version 1.0
+ *@since 2016-11-10
+ */
 public class HotelReservationSystem{
   private ConstantUtils utils;
   private UserReader userReader;
@@ -27,8 +35,9 @@ public class HotelReservationSystem{
   private final int EXITVAL_DESKADMIN = 5;
   private final int EXITVAL_SUPERVISOR = 8;
 
-  //private AnalyticsGenerator aGenerator;
-
+  /**
+   * Constructor for creating HotelReservationSystem objects.
+   */
   public HotelReservationSystem(){
     utils = new ConstantUtils();
     userReader = new UserReader(utils.USERS_FILE);
@@ -43,11 +52,10 @@ public class HotelReservationSystem{
     aGenerator = new AnalyticsGenerator(hReader,rReader, sReader, cReader);
   }
 
+  /**
+   * This method runs the program by first allowing the user to log in.
+   */
   public void run(){
-    loginMenuProcess();
-  }
-
-  private void loginMenuProcess(){
     int choice;
     String [] userTypes = {"c", "da", "s"};
 

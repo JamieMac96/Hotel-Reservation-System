@@ -1,3 +1,11 @@
+/**
+ *The class ConstantUtils has the responsibility of storing all the URIs of the files in use by the program
+ *as well as some constants that are used more than once in the progrma.
+ *
+ *@author Jamie Mac Manus
+ *@version 1.0
+ *@since 2016-11-10
+ */
 public class ConstantUtils{
   //private String directory;
   public final String CANCELLATIONS_FILE = "resources/Cancellations.csv";

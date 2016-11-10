@@ -1,6 +1,16 @@
+
+/**
+ *The class MenuPrinter has the responsibility of printing menus to screen.
+ *
+ *@author Jamie Mac Manus
+ *@version 1.0
+ *@since 2016-11-10
+ */
 public class MenuPrinter{
 
-
+  /**
+   * Prints the login menu.
+   */
   public void printLoginMenu(){
     String [] messages = {"\n**********  LOGIN MENU **********",
                                 "1.Customer login",
@@ -13,7 +23,9 @@ public class MenuPrinter{
     printMenu(messages);
   }
 
-
+  /**
+   * Prints the customers menu.
+   */
   public void printCustomerMenu(){
     String [] messages =  {"\n**********  CUSTOMER MENU  **********",
                           "1.Make reservation",
@@ -25,7 +37,9 @@ public class MenuPrinter{
     printMenu(messages);
   }
 
-
+  /**
+   * Prints the supervisors menu.
+   */
   public void printSupervisorMenu(){
     String [] messages = {"\n**********  SUPERVISOR MENU  **********",
                           "1.Make reservation",
@@ -42,11 +56,9 @@ public class MenuPrinter{
     printMenu(messages);
   }
 
-
-
-
-
-
+  /**
+   * Prints the analytics menu.
+   */
   public void printAnalyticsMenu(){
     String [] messages = {"\n********** ANALYTICS MENU **********",
                           "1.Hotel occupancy analytics",
@@ -58,7 +70,9 @@ public class MenuPrinter{
     printMenu(messages);
   }
 
-
+  /**
+   * Prints the desk administrators menu.
+   */
   public void printDeskAdministratorMenu(){
     String [] messages =  {"\n**********  DESK ADMINISTRATOR MENU  **********",
                           "1.Make reservation",

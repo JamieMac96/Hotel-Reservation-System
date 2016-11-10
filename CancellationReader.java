@@ -4,6 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+
+/**
+ *The class CancellationReader has the responsibility of storing all the current
+ *cancellation data on file so that it can be used by other parts of the program.
+ *
+ *@author Jamie Mac Manus
+ *@version 1.0
+ *@since 2016-11-10
+ */
 public class CancellationReader{
   private String fileString;
   private ArrayList<Cancellation> cancellations;
@@ -13,6 +22,11 @@ public class CancellationReader{
     readInFileData();
   }
 
+  /**
+   * Returns the total loss of revenue as a result of cancellations on a specific day.
+   * @param  chosenDate The date that we are calculating loss of revenue for.
+   * @return  cancellationCosts the total loss of revenue on the given date.
+   */
   public double costForDate(Date chosenDate){
     double cancellationCosts = 0;
     for(int i = 0; i < cancellations.size(); i++){

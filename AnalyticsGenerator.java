@@ -3,12 +3,28 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ *The class AnalyticsGenerator has the responsibility of
+ *outputting analytics to csv fils.
+ *
+ *@author Jamie Mac Manus
+ *@version 1.0
+ *@since 2016-11-10
+ */
 public class AnalyticsGenerator{
   private HotelReader hReader;
   private ReservationReader rReader;
   private StayReader sReader;
   private CancellationReader cReader;
 
+
+  /**
+   * Constructor for AnalyticsGenerator
+   * @param   hReader contains data on hotels.
+   * @param   rReader contains data on reservations.
+   * @param   sReader contains data on stays.
+   * @param   cReader contains data on cancellations.
+   */
   public AnalyticsGenerator(HotelReader hReader, ReservationReader rReader, StayReader sReader, CancellationReader cReader){
     this.hReader = hReader;
     this.rReader = rReader;
@@ -16,6 +32,10 @@ public class AnalyticsGenerator{
     this.cReader = cReader;
   }
 
+  /**
+   * This method creates and output file, generates hotel occupancy analytics and prints the analytics to the output file.
+   * @param chosenRange the date range that the user has chosen to acquire analytics on.
+   */
   public void outputHotelOccupancyAnalytics(DateRange chosenRange){
     String fileName = "./analytics/" + "hotel_occupancy/" + chosenRange.getStartDateString() + "_" + chosenRange.getEndDateString() + ".csv";
     File destinationFile = createAnalyticsFile(fileName);
@@ -25,6 +45,10 @@ public class AnalyticsGenerator{
     System.out.println("!Created analytics file: " + destinationFile.getName() + "!");
   }
 
+  /**
+   * This method creates and output file, generates room occupancy analytics and prints the analytics to the output file.
+   * @param chosenRange the date range that the user has chosen to acquire analytics on.
+   */
   public void outputRoomOccupancyAnalytics(DateRange chosenRange){
     String fileName = "./analytics/" + "room_occupancy/" + chosenRange.getStartDateString() + "_" + chosenRange.getEndDateString() + ".csv";
     File destinationFile = createAnalyticsFile(fileName);
@@ -34,6 +58,10 @@ public class AnalyticsGenerator{
     System.out.println("!Created analytics file: " + destinationFile.getName() + "!");
   }
 
+  /**
+   * This method creates and output file, generates financial analytics and prints the analytics to the output file.
+   * @param chosenRange the date range that the user has chosen to acquire analytics on.
+   */
   public void outputFinancialAnalytics(DateRange chosenRange){
     String fileName = "./analytics/" + "financial/" + chosenRange.getStartDateString() + "_" + chosenRange.getEndDateString() + ".csv";
     File destinationFile = createAnalyticsFile(fileName);
@@ -221,11 +249,5 @@ private Date getCurrentDate(DateRange chosenRange, int i){
   currentDate.incrementDays(i);
   return currentDate;
 }
-
-
-
-
-
-
 
 }

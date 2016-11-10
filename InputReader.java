@@ -1,36 +1,71 @@
 import java.util.Scanner;
 
+/**
+ *The class InputReader has the responsibility of allowing the user to provide input .
+ *
+ *@author Jamie Mac Manus
+ *@version 1.0
+ *@since 2016-11-10
+ */
 public class InputReader{
   private Scanner sc;
   private InputValidator userInputValidator;
 
+  /**
+   * Constructor that creates a new InputReader object.
+   */
   public InputReader(){
     sc = new Scanner(System.in);
     userInputValidator = new InputValidator();
   }
 
+  /**
+   * Allows the user to enter a valid choice when logging in.
+   * @return The user's choice.
+   */
   public int getValidLoginChoice(){
     return getInputInRange(1,4);
   }
 
+  /**
+   * Allows the user to enter a valid choice when selecting an operation.
+   * @param  exitValue The highest value the user can input for a certain menu.
+   * @return  The user's choice.
+   */
   public int getValidUserMenuChoice(int exitValue){
     return getInputInRange(1, exitValue);
   }
 
+  /**
+   * Allows the user to enter a valid choice when the type of analytics they want.
+   * @return The user's choice.
+   */
   public int getValidAnalyticsChoice(){
     return getValidLoginChoice();
   }
 
+  /**
+   * prompts for and returns the user's username.
+   * @return user's username.
+   */
   public String readUsername(){
     System.out.print("Enter your username: ");
     return sc.nextLine();
   }
 
+  /**
+   * prompts for and returns the user's password.
+   * @return user's password.
+   */
   public String readPassword(){
     System.out.print("Enter your password: ");
     return sc.nextLine();
   }
 
+  /**
+   * Prompts for and returns a user input reservation.
+   * @return reservation the user input reservation.
+   */
   public Reservation readInValidReservation(){
     Reservation reservation;
     int reservationNumber;
@@ -69,6 +104,11 @@ public class InputReader{
     return reservation;
   }
 
+  /**
+   * Prompts for and returns a user input Cancellation.
+   * @param  rReader the reservation reader.
+   * @return   userInputCancellation The cancellation entered by the user.
+   */
   public Cancellation readInValidCancellation(ReservationReader rReader){
     Cancellation userInputCancellation;
     Reservation chosenRes;
@@ -83,6 +123,11 @@ public class InputReader{
     return userInputCancellation;
   }
 
+  /**
+   * Prompts for and returns a user input stay.
+   * @param  rReader the reservation reader.
+   * @return   userInputStay The stay entered by the user.
+   */
   public Stay readInValidStay(ReservationReader rReader){
     Stay userInputStay;
     Reservation chosenRes;
@@ -96,24 +141,43 @@ public class InputReader{
     return userInputStay;
   }
 
+  /**
+   * Tells the user that we are now requesting information about a discount.
+   */
   public void printDiscountStartPrompt(){
     System.out.println("\n**************************  REQUESTING DISCOUNT INFO **************************");
   }
 
+  /**
+   * This method requests the user to enter the reservation number of the reservation to be discounted.
+   * @param  rReader the reservation reader.
+   * @return  the reservation that the user specified.
+   */
   public Reservation getReservationToBeDiscounted(ReservationReader rReader){
     System.out.print("Enter the reservation number you would like to discount: ");
     return getReservationFromUserInputReservationNumber(rReader);
   }
 
+  /**
+   * Prompts for and returns the amount the user wishes to discount.
+   * @return A double representing the amount discounted.
+   */
   public double getDiscountAmount(){
     System.out.print("Enter the amount you would like to discount this reservation: ");
     return getValidDouble();
   }
 
+  /**
+   * Tells the user that we are now finished requesting information about a discount.
+   */
   public void printDiscountEndPrompt(){
     System.out.println("******************************************************************************\n");
   }
 
+  /**
+   * Requests for and returns a valid date range.
+   */
+   * @return requestedRange The user specified DateRange.
   public DateRange getValidDateRange(){
     System.out.println("\n**************************  REQUESTING DATE INFO *************************");
 
@@ -140,7 +204,7 @@ public class InputReader{
   private Date getValidDate(){
     Date newDate;
     newDate = new Date(sc.nextLine());
-    while(!userInputValidator.isValidDate(newDate)){
+    while(!newDate.isValid()){
       System.out.print("Error. This is not a valid date, try again: ");
       newDate = new Date(sc.nextLine());
     }

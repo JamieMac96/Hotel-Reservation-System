@@ -1,5 +1,20 @@
+
+/**
+ *The class Reservation has the responsibility of defining and storing a reservations.
+ *
+ *@author Jamie Mac Manus
+ *@version 1.0
+ *@since 2016-11-10
+ */
 import java.util.ArrayList;
 
+/**
+ *The class Reservation has the responsibility of defining and storing a reservations.
+ *
+ *@author Jamie Mac Manus
+ *@version 1.0
+ *@since 2016-11-10
+ */
 public class Reservation{
   private int reservationNumber;
   private String reservationName;
@@ -11,9 +26,17 @@ public class Reservation{
   private double totalCost;
   private double deposit;
   private String processed;
-  /*if user cancelled within 48 hours and the reservation was of standard type.*/
 
-  //for user input.
+  /**
+   * Constructor to create new instance of Reservation (used when reading from user input).
+   * @param   reservationNumber An integer that identifies the reservation.
+   * @param   reservationName The chosen name of the reservation.
+   * @param   reservationType The type of the reservation(S or AP).
+   * @param   checkInDate The date that the customer is planned to check in.
+   * @param   numberOfNights The number of nights the customer will stay.
+   * @param   numberOfRooms The number of rooms reserved.
+   * @param   deposit The deposit left.
+   */
   public Reservation(int reservationNumber, String reservationName,
                      String reservationType, Date checkInDate,
                      int numberOfNights, int numberOfRooms, double deposit){
@@ -30,7 +53,19 @@ public class Reservation{
     processed = "f";
   }
 
-  //for when reading from file.
+  /**
+   * [Reservation description]
+   * @param   reservationNumber An integer that identifies the reservation.
+   * @param   reservationName The chosen name of the reservation.
+   * @param   reservationType The type of the reservation(S or AP).
+   * @param   checkInDate The date that the customer is planned to check in.
+   * @param   numberOfNights The number of nights the customer will stay.
+   * @param   numberOfRooms The number of rooms reserved.
+   * @param   rooms The rooms reserved by the reservation
+   * @param   totalCost The total cost of the reservation.
+   * @param   deposit The deposit left.
+   * @param   processed Whether or not the reservation has been processed yet.
+   */
   public Reservation(int reservationNumber, String reservationName,
                      String reservationType, Date checkInDate,
                      int numberOfNights, int numberOfRooms, Room[] rooms,
@@ -47,22 +82,42 @@ public class Reservation{
      this.processed = processed;
   }
 
+  /**
+   * This method returns the reservation number.
+   * @return reservationNumber the number that identifies the reservation.
+   */
   public int getReservationNumber(){
     return reservationNumber;
   }
 
+  /**
+   * This method returns the reservation name.
+   * @return reservationName The name of the reservation.
+   */
   public String getReservationName(){
     return reservationName;
   }
 
+  /**
+   * This method returns the type of reservation(S or AP).
+   * @return reservationType the type of reservation.
+   */
   public String getReservationType(){
     return reservationType;
   }
 
+  /**
+   * This method returns the checkInDate.
+   * @return checkInDate The check in date.
+   */
   public Date getCheckInDate(){
     return checkInDate;
   }
 
+  /**
+   * [getNumberOfNights description]
+   * @return [description]
+   */
   public int getNumberOfNights(){
     return numberOfNights;
   }

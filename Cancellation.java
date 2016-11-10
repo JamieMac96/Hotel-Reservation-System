@@ -9,6 +9,18 @@ public class Cancellation{
     refunded = amountMustBeRefunded();
   }
 
+  public boolean isRefunded(){
+    return refunded;
+  }
+
+  public Date getDate(){
+    return cancellationDate;
+  }
+
+  public double getCost(){
+    return reservation.getTotalCost();
+  }
+
   public Cancellation(Reservation reservation, Date cancellationDate, boolean refunded){
     this.reservation = reservation;
     this.cancellationDate = cancellationDate;

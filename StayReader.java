@@ -26,6 +26,17 @@ public class StayReader{
     return -1;
   }
 
+  public double incomeForDate(Date chosenDate){
+    double income = 0;
+
+    for(int i = 0; i < stays.size(); i++){
+      if(chosenDate.getDateString().equals(stays.get(i).getCheckInDate().getDateString())){
+        income += stays.get(i).getCost();
+      }
+    }
+    return income;
+  }
+
   private void readInFileData(){
     stays = new ArrayList<Stay>();
     try{
@@ -40,7 +51,7 @@ public class StayReader{
      while(fileIn.hasNext()){
        lineSplit = fileIn.nextLine().split(",");
        checkInDate = new Date(lineSplit[3]);
-       roomsInReservation = getRoomsFromRoomNumbers(lineSplit[6]);//lineSplit[6] contains room numbers.
+       roomsInReservation = getRooms(lineSplit[6]);//lineSplit[6] contains room numbers.
 
        reservationFromFile = new Reservation(Integer.parseInt(lineSplit[0]), lineSplit[1], lineSplit[2], checkInDate,
                                         Integer.parseInt(lineSplit[4]), Integer.parseInt(lineSplit[5]), roomsInReservation,
@@ -62,11 +73,13 @@ public class StayReader{
    * @param roomNumbers
    * @return
    */
-    private Room[] getRoomsFromRoomNumbers(String roomNumbers){
-      String [] roomSplit = roomNumbers.split("\\+");
+    private Room[] getRooms(String roomInfo){
+      String [] roomSplit = roomInfo.split("\\*");
+      String [] roomInfoSplit;
       Room[] rooms = new Room[roomSplit.length];
       for(int i = 0; i < rooms.length; i++){
-        rooms[i] = new Room(Integer.parseInt(roomSplit[i]));
+        roomInfoSplit = roomSplit[i].split("\\.");
+        rooms[i] = new Room(Integer.parseInt(roomInfoSplit[0]), roomInfoSplit[1], roomInfoSplit[2]);
       }
       return rooms;
     }

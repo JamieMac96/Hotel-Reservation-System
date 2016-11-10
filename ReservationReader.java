@@ -75,7 +75,7 @@ public class ReservationReader{
    */
   public void applyDiscount(){
     InputReader iReader = new InputReader();
-    
+
     iReader.printDiscountStartPrompt();
     Reservation reservationToDiscount = iReader.getReservationToBeDiscounted(this);
     double discountAmount = iReader.getDiscountAmount();
@@ -89,6 +89,17 @@ public class ReservationReader{
       System.out.println("!Error: Reservation cost cannot be less than deposit!");
     }
 
+  }
+
+  public double incomeForDate(Date chosenDate){
+    double income = 0;
+
+    for(int i = 0; i < reservations.size(); i++){
+      if(reservations.get(i).getCheckInDate().getDateString().equals(chosenDate.getDateString())){
+        income += reservations.get(i).getTotalCost();
+      }
+    }
+    return income;
   }
 
   /**
@@ -129,10 +140,12 @@ public class ReservationReader{
  * @return
  */
   private Room[] getRoomsFromRoomNumbers(String roomNumbers){
-    String [] roomSplit = roomNumbers.split("\\+");
+    String [] roomSplit = roomNumbers.split("\\*");
+    String [] roomElementSplit;
     Room[] rooms = new Room[roomSplit.length];
     for(int i = 0; i < rooms.length; i++){
-      rooms[i] = new Room(Integer.parseInt(roomSplit[i]));
+      roomElementSplit = roomSplit[i].split("\\.");
+      rooms[i] = new Room(Integer.parseInt(roomElementSplit[0]), roomElementSplit[1], roomElementSplit[2]);
     }
     return rooms;
   }

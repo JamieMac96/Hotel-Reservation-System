@@ -13,6 +13,18 @@ public class CancellationReader{
     readInFileData();
   }
 
+  public double costForDate(Date chosenDate){
+    double cancellationCosts = 0;
+    for(int i = 0; i < cancellations.size(); i++){
+      if(cancellations.get(i).isRefunded()){
+        if(chosenDate.getDateString().equals(cancellations.get(i).getDate().getDateString())){
+          cancellationCosts += cancellations.get(i).getCost();
+        }
+      }
+    }
+    return cancellationCosts;
+  }
+
 
   private void readInFileData(){
     cancellations = new ArrayList<Cancellation>();
@@ -28,7 +40,7 @@ public class CancellationReader{
      while(fileIn.hasNext()){
        lineSplit = fileIn.nextLine().split(",");
        checkInDate = new Date(lineSplit[3]);
-       roomsInReservation = getRoomsFromRoomNumbers(lineSplit[6]);//lineSplit[6] contains room numbers.
+       roomsInReservation = getRooms(lineSplit[6]);//lineSplit[6] contains room numbers.
 
        reservationFromFile = new Reservation(Integer.parseInt(lineSplit[0]), lineSplit[1], lineSplit[2], checkInDate,
                                         Integer.parseInt(lineSplit[4]), Integer.parseInt(lineSplit[5]), roomsInReservation,
@@ -48,12 +60,14 @@ public class CancellationReader{
    * @param roomNumbers
    * @return
    */
-    private Room[] getRoomsFromRoomNumbers(String roomNumbers){
-      String [] roomSplit = roomNumbers.split("\\+");
-      Room[] rooms = new Room[roomSplit.length];
-      for(int i = 0; i < rooms.length; i++){
-        rooms[i] = new Room(Integer.parseInt(roomSplit[i]));
-      }
-      return rooms;
-    }
+   private Room[] getRooms(String roomInfo){
+     String [] roomSplit = roomInfo.split("\\*");
+     String [] roomInfoSplit;
+     Room[] rooms = new Room[roomSplit.length];
+     for(int i = 0; i < rooms.length; i++){
+       roomInfoSplit = roomSplit[i].split("\\.");
+       rooms[i] = new Room(Integer.parseInt(roomInfoSplit[0]), roomInfoSplit[1], roomInfoSplit[2]);
+     }
+     return rooms;
+   }
 }

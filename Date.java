@@ -140,19 +140,19 @@ public class Date{
     int year = getYear();
 
     while(daysPerMonth[currentMonth] < currentDay){
-      currentDay = currentDay % daysPerMonth[currentMonth];
+      currentDay = currentDay - daysPerMonth[currentMonth];
       currentMonth++;
     }
 
-    if(currentYear > year){
+    if(currentYear < year){
       daysFromNow = true;
     }
     else if(currentYear == year){
-      if(currentMonth > month){
+      if(currentMonth < month){
         daysFromNow = true;
       }
       else if(currentMonth == month){
-        if(currentDay >= dayOfMonth){
+        if(currentDay <= dayOfMonth){
           daysFromNow = true;
         }
       }
@@ -197,15 +197,15 @@ public class Date{
     int day = getDay();
 
 
-    if(comparisonYear > year){
+    if(comparisonYear < year){
       afterOrEqual = true;
     }
     else if(comparisonYear == year){
-      if(comparisonMonth > month){
+      if(comparisonMonth < month){
         afterOrEqual = true;
       }
       else if(comparisonMonth == month){
-        if(comparisonDay >= day){
+        if(comparisonDay <= day){
           afterOrEqual = true;
         }
       }
@@ -215,7 +215,7 @@ public class Date{
   }
 
   public void incrementDays(int numberOfDays){
-    int currentDay = getDay();
+    int currentDay = getDay() + numberOfDays;
     int currentMonth = getMonth();
     int currentYear = getYear();
 

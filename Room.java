@@ -13,12 +13,16 @@ public class Room{
     this(roomNumber, "", "");
   }
 
+  public int getRoomNumber(){
+    return roomNumber;
+  }
+
   public String getRoomType(){
     return roomType;
   }
 
-  public int getRoomNumber(){
-    return roomNumber;
+  public String getOccupancy(){
+    return occupancy;
   }
 
   public void setRoomNumber(int rNumber){

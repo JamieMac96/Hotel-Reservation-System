@@ -7,6 +7,9 @@ import java.util.Scanner;
  *-reservations are removed from the system after a month presuming they have been processed
  * ie converted to a cancellation or a stay. This means that stays and cancellations will need
  * to contain all the information of a reservation.
+ *
+ *
+ * -reservations that are already stays can be cancelled. and vice versa
 */
 public class HotelReservationSystem{
   private ConstantUtils utils;

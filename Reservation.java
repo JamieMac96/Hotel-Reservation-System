@@ -132,10 +132,10 @@ public class Reservation{
 
     for(int i = 0; i < rooms.length; i++){
       if(i == rooms.length - 1){
-        reservationInfoAsString += rooms[i].getRoomNumber();
+        reservationInfoAsString += rooms[i].getRoomNumber() + "." + rooms[i].getRoomType() + "." + rooms[i].getOccupancy();
       }
       else{
-        reservationInfoAsString += rooms[i].getRoomNumber() + "+";
+        reservationInfoAsString += rooms[i].getRoomNumber() + "." + rooms[i].getRoomType() + "." + rooms[i].getOccupancy() + "*";
       }
     }
 

@@ -37,6 +37,10 @@ public class Stay{
     return reservation.getNumberOfRooms();
   }
 
+  public double getCost(){
+    return reservation.getTotalCost();
+  }
+
   public String toString(){
     String reservationString = reservation.toString();
     String partRequired = reservationString.substring(0,reservationString.length() - 2);//removes ",f" or ",t"

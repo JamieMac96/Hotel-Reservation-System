@@ -1,15 +1,7 @@
-
-/**
- *The class Reservation has the responsibility of defining and storing a reservations.
- *
- *@author Jamie Mac Manus
- *@version 1.0
- *@since 2016-11-10
- */
 import java.util.ArrayList;
 
 /**
- *The class Reservation has the responsibility of defining and storing a reservations.
+ *The class Reservation has the responsibility of defining and storing a reservation.
  *
  *@author Jamie Mac Manus
  *@version 1.0
@@ -115,49 +107,79 @@ public class Reservation{
   }
 
   /**
-   * [getNumberOfNights description]
-   * @return [description]
+   * This method returns the number of nights reserved.
+   * @return numberOfNights The number of nights reserved.
    */
   public int getNumberOfNights(){
     return numberOfNights;
   }
 
+  /**
+   * This method returns the number of rooms reserved.
+   * @return numberOfRooms The number of rooms reserved.
+   */
   public int getNumberOfRooms(){
     return numberOfRooms;
   }
 
+  /**
+   * This method returns the total cost of the reservation.
+   * @return totalCost The total cost of the reservation.
+   */
   public double getTotalCost(){
     return totalCost;
   }
 
+  /**
+   * This method returns the deposit left on the reservation.
+   * @return deposit The deposit left on the reservation.
+   */
   public double getDeposit(){
     return deposit;
   }
+
 
   public String getRoomType(){
     return rooms[0].getRoomType();
   }
 
+  /**
+   * This method sets the rooms reserved.
+   * @param rooms An array of rooms.
+   */
   public void setRooms(Room[] rooms){
     this.rooms = rooms;
   }
 
+  /**
+   * This method sets the totalCost of the reservation.
+   * @param totalCost the total cost to be set.
+   */
   public void setTotalCost(double totalCost){
     this.totalCost = totalCost;
   }
 
-
+  /**
+   * This method flags the reservation as processed.
+   */
   public void setAsProcessed(){
     processed = "t";
   }
 
+  /**
+   * This method checks if the method has been processed.
+   * @return The truth value of hether or not the reservation has been process.
+   */
   public boolean isProcessed(){
     return processed.equals("t");
   }
 
+  /**
+   * This method  calculates the total cost of the reservation and sets totalCost to the result.
+   * @param  hReaderWithRoomData The hotelReader used to calculate the cost of certain rooms.
+   * @return totalCost The total cost of the reservation.
+   */
   public double calculateTotalCost(HotelReader hReaderWithRoomData){
-    /*Note: we need to pass the HotelReader here so that we can find the pricing of the rooms
-      involved in the reservation.*/
 
     ArrayList<RoomType> roomTypeList = hReaderWithRoomData.getAllRoomTypes();
     int dayOfWeekIndex = checkInDate.getDayOfWeekIndex();
@@ -181,6 +203,10 @@ public class Reservation{
     return totalCost;
   }
 
+  /**
+   * This method returns a string that describes the reservation.
+   * @return reservationInfoAsString The string that reresents the reservation.
+   */
   public String toString(){
     String reservationInfoAsString = reservationNumber + "," + reservationName + "," + reservationType + "," + checkInDate.getDateString() +
                                       "," + numberOfNights + "," + numberOfRooms + ",";
@@ -199,10 +225,18 @@ public class Reservation{
     return reservationInfoAsString;
   }
 
+  /**
+   * This method reduced the price by 5% for advanced purchase reservations.
+   */
   public void applyAdvancePurchaseDiscount(){
     totalCost = totalCost - (totalCost / 20);
   }
 
+  /**
+   * This method checks if the reservationNumber of the res supplied is the same as the reservationNumber of the current Reservation.
+   * @param  res The Reservation we are comparing with.
+   * @return     The truth value of whether or not the two reservations have the same reservationNumber.
+   */
   public boolean equals(Reservation res){
     //Functionality to ensure reservationNumber is unique?
     if(res.getReservationNumber() == reservationNumber){

@@ -18,7 +18,7 @@ public class CancellationWriter{
 
   /**
    * Constructor for creating a new CancellationWriter.
-   * @param  fileString the URI for the Cancellation.csv file.
+   * @param  fileString The URI for the Cancellation.csv file.
    */
   public CancellationWriter(String fileString){
     this.fileString = fileString;

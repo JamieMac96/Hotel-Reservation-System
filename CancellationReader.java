@@ -17,6 +17,10 @@ public class CancellationReader{
   private String fileString;
   private ArrayList<Cancellation> cancellations;
 
+  /**
+   * Constructor for creating a new CancellationReader.
+   * @param  fileString The URI for the Cancellation.csv file.
+   */
   public CancellationReader(String fileString){
     this.fileString = fileString;
     readInFileData();

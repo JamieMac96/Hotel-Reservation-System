@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 /**
+ *The class ReservationReader has the responsibility of reading and maintaining the data from the reservations.csv file.
  *
- * @author jamie
- *
+ *@author Jamie Mac Manus
+ *@version 1.0
+ *@since 2016-11-10
  */
 public class ReservationReader{
   private ArrayList<Reservation> reservations = new ArrayList<Reservation>();
@@ -18,7 +20,7 @@ public class ReservationReader{
   }
 
 /**
- *
+ *This method removes any expired reservations from the reservations.csv file.
  */
   public void removeExpiredReservations(){
     for(int i = 0; i < reservations.size(); i++){
@@ -32,7 +34,7 @@ public class ReservationReader{
 
 /**
  *
- * @param reservationNumber
+ * @param reservationNumber The reservation number of the reservation we are searching for.
  * @return
  */
   public Reservation findReservation(int reservationNumber){
@@ -45,7 +47,7 @@ public class ReservationReader{
   }
 
 /**
- *
+ *This method clears the ArrayList of reservations and reads in the current contents of Reservations.csv file.
  */
   public void update(){
     reservations.clear();
@@ -53,7 +55,7 @@ public class ReservationReader{
   }
 
   /**
-   *
+   *This method updates the contents of the reservations.csv file with the current contents of the reservations ArrayList.
    */
   public void printUpdatedReservationsToFile(){
     try{
@@ -71,7 +73,7 @@ public class ReservationReader{
   }
 
   /**
-   * [applyDiscount description]
+   * This method allows the user to apply a discount to a certain reservation.
    */
   public void applyDiscount(){
     InputReader iReader = new InputReader();
@@ -91,6 +93,11 @@ public class ReservationReader{
 
   }
 
+  /**
+   * This method retrieves the total reservation income for a specific date.
+   * @param  chosenDate The date that we retrieving the income for.
+   * @return  income the total income from reservations for the specified date.
+   */
   public double incomeForDate(Date chosenDate){
     double income = 0;
 
@@ -102,9 +109,6 @@ public class ReservationReader{
     return income;
   }
 
-  /**
-   *
-   */
   private void readInFileData(){
     reservations = new ArrayList<Reservation>();
     try{
@@ -134,11 +138,6 @@ public class ReservationReader{
     }
   }
 
-/**
- *
- * @param roomNumbers
- * @return
- */
   private Room[] getRoomsFromRoomNumbers(String roomNumbers){
     String [] roomSplit = roomNumbers.split("\\*");
     String [] roomElementSplit;

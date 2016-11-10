@@ -3,14 +3,26 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ *The class UserReader has the responsibility of reading .
+ *
+ *@author Jamie Mac Manus
+ *@version 1.0
+ *@since 2016-11-10
+ */
 public class UserReader{
   private String fileString;
   private ArrayList<User> userInfo;
 
+  /**
+   * Constructor for creating new UserReader objects.
+   * @param  fileString The URI of the SystemUsers.csv file.
+   */
   public UserReader(String fileString){
     fileString = fileString;
     readInFileData(fileString);
   }
+
 
   private void readInFileData(String fileString){
     userInfo = new ArrayList<User>();

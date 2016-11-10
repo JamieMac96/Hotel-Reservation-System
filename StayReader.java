@@ -4,19 +4,39 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ *The class Stay has the responsibility storing and maintaining all the contents of the Stays.csv file.
+ *
+ *@author Jamie Mac Manus
+ *@version 1.0
+ *@since 2016-11-10
+ */
 public class StayReader{
   private String fileString;
   private ArrayList<Stay> stays;
 
+  /**
+   * Constructor for creating a new CancellationWriter.
+   * @param  fileString The URI for the Cancellation.csv file.
+   */
   public StayReader(String fileString){
     this.fileString = fileString;
     readInFileData();
   }
 
+  /**
+   * This method returns all the info relating to stays in the system.
+   * @return stays All the stay info in the system.
+   */
   public ArrayList<Stay> getStayInfo(){
     return stays;
   }
 
+  /**
+   * This method gets the index of a given stay.
+   * @param  stay The stay that we are searching for.
+   * @return i The index of the parameter stay.
+   */
   public int getIndex(Stay stay){
     for(int i = 0; i < stays.size(); i++){
       if(stay.equals(stays.get(i))){
@@ -26,6 +46,11 @@ public class StayReader{
     return -1;
   }
 
+  /**
+   * This method returns the total income from stays for a particular date.
+   * @param  chosenDate The date that we are getting the income for.
+   * @return income The total stay income for the chosen day.
+   */
   public double incomeForDate(Date chosenDate){
     double income = 0;
 

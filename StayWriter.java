@@ -3,17 +3,33 @@ import java.util.ArrayList;
 import java.io.IOException;
 import java.io.File;
 
+/**
+ *The class StayWriter has the responsibility of reading stays from the end user and printing them to file.
+ *
+ *@author Jamie Mac Manus
+ *@version 1.0
+ *@since 2016-11-10
+ */
 public class StayWriter{
   private String fileString;
   private Stay userInputStay;
   private InputReader iReader;
 
-
+  /**
+   * Constructor that greates new objects of type StayWriter.
+   * @param  fileString [description]
+   * @return            [description]
+   */
   public StayWriter(String fileString){
     this.fileString = fileString;
     iReader = new InputReader();
   }
 
+  /**
+   * This method checks in a customer.
+   * @param  rReader The class that contains info on reservations.
+   * @param  sReader The class that contains info on stays.
+   */
   public void checkInCustomer(ReservationReader rReader, StayReader sReader){
     userInputStay = iReader.readInValidStay(rReader);
     if(sReader.getIndex(userInputStay) == -1){
@@ -24,6 +40,11 @@ public class StayWriter{
     }
   }
 
+  /**
+   * This method allows a customer to check out.
+   * @param  rReader The class that contains info on reservations.
+   * @param  sReader The class that contains info on stays.
+   */
   public void checkOutCustomer(ReservationReader rReader, StayReader sReader){
     userInputStay = iReader.readInValidStay(rReader);
     int stayIndex;

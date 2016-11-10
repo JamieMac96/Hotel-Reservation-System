@@ -3,16 +3,30 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
+/**
+ *The class ReservationWriter has the responsibility of writing user input reservations to file.
+ *
+ *@author Jamie Mac Manus
+ *@version 1.0
+ *@since 2016-11-10
+ */
 public class ReservationWriter{
   private String fileString;
   private Reservation userInputReservation;
 
 
-  //Note: userInputReservation not initialized here: problem?
+  /**
+   * Constructor for creating instances of the ReservationWriter class.
+   * @param The URI for the Cancellation.csv file.
+   */
   ReservationWriter(String fileString){
     this.fileString = fileString;
   }
 
+  /**
+   * This method reads in a reservation from the user and prints the result to file.
+   * @param hReader The object that contains info about hotels (allows for reservation validation).
+   */
   public void makeReservation(HotelReader hReader){
     readInReservation(hReader);
     printReservationToFile();

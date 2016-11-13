@@ -138,10 +138,18 @@ public class Reservation{
     return deposit;
   }
 
-
-  public String getRoomType(){
+  /**
+   * This method returns the room type of the first room in the reservation, it is
+   * used by the AnalyticsGenerator to check if a hotel has a the room types of
+   * a certain stay, we can say that all the roomtypes belong to that hotel if one
+   * does since each reservation can only reserve rooms at one hotel.
+   *
+   * @return The room type of the first room in the reservation.
+   */
+  public String getFirstRoomType(){
     return rooms[0].getRoomType();
   }
+
 
   /**
    * This method sets the rooms reserved.

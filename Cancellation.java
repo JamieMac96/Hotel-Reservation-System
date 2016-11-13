@@ -59,6 +59,14 @@ public class Cancellation{
   }
 
   /**
+   * This method returns the reservation that belongss to the current cancellation.
+   * @return reservation the reservation that belongs to this cancellation.
+   */
+  public Reservation getReservation(){
+    return reservation;
+  }
+
+  /**
    * Returns a string that represents the data contained by a cancellation and is compatible with a csv file.
    * @return the string representation of the Cancellation.
    */

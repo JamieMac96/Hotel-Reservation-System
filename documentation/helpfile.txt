@@ -1,0 +1,31 @@
+This application can be running using the following commands:
+
+Compilation:
+	javac *.java
+Execution:
+	java TestProject
+
+These two commands will allow the user to run the reservation system which is based on a series of menus and prompts.
+
+The first menu that will appear is the login menu. Here you simply select the user type you wish to use and then enter the
+the details for a user of that type. These details are stored in the SystemUsers.csv file. 
+
+The next menu that appears will allow you to perform a series of actions depending on the privilages of the user type you have 
+selected. Again you enter a number that represents the action that you wish to choose. Next you will either be prompted with
+another menu, asked to enter certain information, or your chosen action will be performed. 
+
+Dates: Any dates entered must be in the format day-month-year.
+
+Explaination of analytics:
+	-Financial: financial analytics are stored at cs4013project/analytics/financial. The user enters a start date and an end
+		    date that they want analytics for and for each day in that range we output the expected income from reservations,		
+		    the amount of money lost to cancellations and the amount gained from stays. At the bottom of the file there is also 
+		    listed the totals of each category over the period.
+	
+	-Room Occupancy: As with the financial anylitics each row represents a day in the range entered by the user. Each column represents
+			 a type of room.The data is represented as percentage occupancy of the type of room for each day.
+			 Again totals are listed at the bottom of the file.
+	
+	-Hotel occupancy: The hotel occupancy is very similar to the room occupancy but instead of the columns representing room types,
+			  they represent different hotels.
+	  

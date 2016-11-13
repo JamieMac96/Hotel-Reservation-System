@@ -117,10 +117,14 @@ public class InputReader{
     chosenRes = getReservationFromUserInputReservationNumber(rReader);
     System.out.println("**********************************************************************************\n");
 
-    chosenRes.setAsProcessed();
-    userInputCancellation = new Cancellation(chosenRes);
-
-    return userInputCancellation;
+    if(!chosenRes.isProcessed()){
+      userInputCancellation = new Cancellation(chosenRes);
+      return userInputCancellation;
+    }
+    else{
+      System.out.println("!Error. This reservation has alredy been processed!");
+      return null;
+    }
   }
 
   /**
@@ -136,9 +140,15 @@ public class InputReader{
     chosenRes = getReservationFromUserInputReservationNumber(rReader);
     System.out.println("**********************************************************************************\n");
 
-    userInputStay = new Stay(chosenRes);
+    if(!chosenRes.isProcessed()){
+      userInputStay = new Stay(chosenRes);
+      return userInputStay;
+    }
+    else{
+      System.out.println("!Error. This reservation has alredy been processed!");
+      return null;
+    }
 
-    return userInputStay;
   }
 
   /**
@@ -176,8 +186,8 @@ public class InputReader{
 
   /**
    * Requests for and returns a valid date range.
-   */
    * @return requestedRange The user specified DateRange.
+   */
   public DateRange getValidDateRange(){
     System.out.println("\n**************************  REQUESTING DATE INFO *************************");
 

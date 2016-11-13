@@ -83,12 +83,17 @@ public class ReservationReader{
     double discountAmount = iReader.getDiscountAmount();
     iReader.printDiscountEndPrompt();
 
-    if(reservationToDiscount.getTotalCost() >= reservationToDiscount.getDeposit() + discountAmount){
-      reservationToDiscount.setTotalCost(reservationToDiscount.getTotalCost() - discountAmount);
-      printUpdatedReservationsToFile();
+    if(!reservationToDiscount.isProcessed()){
+      if(reservationToDiscount.getTotalCost() >= reservationToDiscount.getDeposit() + discountAmount){
+        reservationToDiscount.setTotalCost(reservationToDiscount.getTotalCost() - discountAmount);
+        printUpdatedReservationsToFile();
+      }
+      else{
+        System.out.println("!Error: Reservation cost cannot be less than deposit!");
+      }
     }
     else{
-      System.out.println("!Error: Reservation cost cannot be less than deposit!");
+      System.out.println("!Error. You cannot discount a reservation that has been processed!");
     }
 
   }

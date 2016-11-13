@@ -1,17 +1,5 @@
 import java.util.Scanner;
 
-/*Notes:
- *
- *-we can read the names of  the files in resources and user that to
- * create the readers/writers instead of manually entering them.
- *-reservations are removed from the system after a month presuming they have been processed
- * ie converted to a cancellation or a stay. This means that stays and cancellations will need
- * to contain all the information of a reservation.
- *
- * -reservations that are already stays can be cancelled. and vice versa
- * -hven't yet allowed users to clear stays/cancellations.
-*/
-
 /**
  *The class HotelReservationSystem has the responsibility of running the reservation system..
  *
@@ -21,35 +9,18 @@ import java.util.Scanner;
  */
 public class HotelReservationSystem{
   private ConstantUtils utils;
-  private UserReader userReader;
-  private ReservationReader rReader;
-  private HotelReader hReader;
-  private InputReader userInputReader;
-  private StayReader sReader;
-  private CancellationReader cReader;
-  private ReservationWriter reservationWriter;
-  private StayWriter stayWriter;
   private MenuPrinter menuPrinter;
-  private AnalyticsGenerator aGenerator;
-  private final int EXITVAL_CUSTOMER = 3;
-  private final int EXITVAL_DESKADMIN = 5;
-  private final int EXITVAL_SUPERVISOR = 8;
+  private InputReader userInputReader;
+  private ReservationReader rReader;
 
   /**
    * Constructor for creating HotelReservationSystem objects.
    */
   public HotelReservationSystem(){
     utils = new ConstantUtils();
-    userReader = new UserReader(utils.USERS_FILE);
-    rReader = new ReservationReader(utils.RESERVATIONS_FILE);
-    hReader = new HotelReader(utils.HOTELS_FILE);
-    userInputReader = new InputReader();
-    sReader = new StayReader(utils.STAYS_FILE);
-    cReader = new CancellationReader(utils.CANCELLATIONS_FILE);
-    reservationWriter = new ReservationWriter(utils.RESERVATIONS_FILE);
-    stayWriter = new StayWriter(utils.STAYS_FILE);
     menuPrinter = new MenuPrinter();
-    aGenerator = new AnalyticsGenerator(hReader,rReader, sReader, cReader);
+    userInputReader = new InputReader();
+    rReader = new ReservationReader(utils.RESERVATIONS_FILE);
   }
 
   /**
@@ -82,24 +53,32 @@ public class HotelReservationSystem{
   private void subMenuLoopProcess(int exitValue){
     /*Note: choice will already have been validated so there is no chance that
       a user will be able to execute an action that are not allowed to execute*/
+    StayWriter stayWriter = new StayWriter(utils.STAYS_FILE);
+    ReservationWriter rWriter = new ReservationWriter(utils.RESERVATIONS_FILE);
+    CancellationWriter cancellationWriter = new CancellationWriter(utils.CANCELLATIONS_FILE);
+    HotelReader hReader = new HotelReader(utils.HOTELS_FILE);
+    StayReader sReader = new StayReader(utils.STAYS_FILE);
+    CancellationReader cReader = new CancellationReader(utils.CANCELLATIONS_FILE);
+    AnalyticsGenerator aGenerator = new AnalyticsGenerator(hReader,rReader, sReader, cReader);
     int choice = -1;
     printCorrectMenu(exitValue);
     choice = userInputReader.getValidUserMenuChoice(exitValue);
     while(choice != exitValue){
       if(choice == 1){
-        makeReservation();
+        rWriter.makeReservation(hReader);
+        rReader.update();
       }
       else if(choice == 2){
-        makeCancellation();
+        cancellationWriter.makeCancellation(rReader);
       }
       else if(choice == 3){
-        checkInCustomer();
+        stayWriter.checkInCustomer(rReader, sReader);
       }
       else if(choice == 4){
-        checkOutCustomer();
+        stayWriter.checkOutCustomer(rReader, sReader);
       }
       else if(choice == 5){
-        displayAnalytics();
+        displayAnalytics(aGenerator);
       }
       else if(choice == 6){
         rReader.applyDiscount();
@@ -112,26 +91,7 @@ public class HotelReservationSystem{
     }
   }
 
-  private void makeReservation(){
-    reservationWriter.makeReservation(hReader);
-    rReader.update();
-  }
-
-  private void makeCancellation(){
-    CancellationWriter cancellationWriter = new CancellationWriter("resources/Cancellations.csv");
-    cancellationWriter.makeCancellation(rReader);
-    rReader.printUpdatedReservationsToFile();
-  }
-
-  private void checkInCustomer(){
-    stayWriter.checkInCustomer(rReader, sReader);
-  }
-
-  private void checkOutCustomer(){
-    stayWriter.checkOutCustomer(rReader, sReader);
-  }
-
-  private void displayAnalytics(){
+  private void displayAnalytics(AnalyticsGenerator aGenerator){
     int choice = -1;
     menuPrinter.printAnalyticsMenu();
     choice = userInputReader.getValidAnalyticsChoice();
@@ -153,6 +113,7 @@ public class HotelReservationSystem{
 
   private void loginUser(String userType){
     User enteredUser = new User(userType, userInputReader.readUsername(), userInputReader.readPassword());
+    UserReader userReader = new UserReader(utils.USERS_FILE);
 
     while(!userReader.userExists(enteredUser)){
       System.out.println("Error: Invalid username or password.");

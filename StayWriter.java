@@ -32,11 +32,13 @@ public class StayWriter{
    */
   public void checkInCustomer(ReservationReader rReader, StayReader sReader){
     userInputStay = iReader.readInValidStay(rReader);
-    if(sReader.getIndex(userInputStay) == -1){
-      attemptFilePrint(sReader);
-    }
-    else{
-      System.out.println("!Error: Already checked in!");
+    if(!(userInputStay == null)){
+      if(sReader.getIndex(userInputStay) == -1){
+        attemptFilePrint(sReader);
+      }
+      else{
+        System.out.println("!Error: Already checked in!");
+      }
     }
   }
 
@@ -48,14 +50,18 @@ public class StayWriter{
   public void checkOutCustomer(ReservationReader rReader, StayReader sReader){
     userInputStay = iReader.readInValidStay(rReader);
     int stayIndex;
-    if((stayIndex = sReader.getIndex(userInputStay)) != -1){
-      userInputStay.setCheckOutDate(getExpectedCheckoutDate());//we can assume that a customer will always leave when they are expected to.
-      userInputStay.setCheckInDate(Date.getCurrentDate());
-      sReader.getStayInfo().set(stayIndex, userInputStay);
-      updateFile(sReader);
-    }
-    else{
-      System.out.println("!Error: You must check in before you can check out!");
+    if(!(userInputStay == null)){
+      if((stayIndex = sReader.getIndex(userInputStay)) != -1){
+        userInputStay.setCheckOutDate(getExpectedCheckoutDate());//we can assume that a customer will always leave when they are expected to.
+        userInputStay.setCheckInDate(Date.getCurrentDate());
+        sReader.getStayInfo().set(stayIndex, userInputStay);
+        updateFile(sReader);
+        userInputStay.getReservation().setAsProcessed();
+        rReader.printUpdatedReservationsToFile();
+      }
+      else{
+        System.out.println("!Error: You must check in before you can check out!");
+      }
     }
   }
 
@@ -72,7 +78,7 @@ public class StayWriter{
 
   private Date getExpectedCheckoutDate(){
     Reservation res = userInputStay.getReservation();
-    Date expectedCheckinDate = res.getCheckInDate();
+    Date expectedCheckinDate = new Date(res.getCheckInDate().getDateString());
     expectedCheckinDate.incrementDays(res.getNumberOfNights());
     return expectedCheckinDate;
   }

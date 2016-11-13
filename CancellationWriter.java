@@ -31,7 +31,11 @@ public class CancellationWriter{
   public void makeCancellation(ReservationReader rReader){
     InputReader iReader = new InputReader();
     userInputCancellation = iReader.readInValidCancellation(rReader);
-    printCancellationToFile();
+    if(!(userInputCancellation == null)){
+      printCancellationToFile();
+      userInputCancellation.getReservation().setAsProcessed();
+      rReader.printUpdatedReservationsToFile();
+    }
   }
 
   private void printCancellationToFile(){

@@ -65,8 +65,8 @@ public class Stay{
    * This method returns the type of room the customer stayed in.
    * @return A string representing the room type.
    */
-  public String getRoomType(){
-    return reservation.getRoomType();
+  public String getFirstRoomType(){
+    return reservation.getFirstRoomType();
   }
 
   /**
@@ -100,7 +100,7 @@ public class Stay{
    * This method compares if two stays come from the same reservation(Note: if they come from
    *  the same reservation the other data fields will be equal due to restrictions put on check in
    *  and check out times).
-   *  
+   *
    * @param  stay The stay we are comparing  with
    * @return      The truth value of whether or not the two stays come from the same reservation.
    */

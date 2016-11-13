@@ -11,9 +11,8 @@ public class DateRange{
 
   /**
    * Constructor to create a DateRange object.
-   * @param   [description]
-   * @param   [description]
-   * @return  [description]
+   * @param   startDate The date that represents the start of the DateRange.
+   * @param   endDate The date that represents the end of the DateRange.
    */
   public DateRange(Date startDate, Date endDate){
     this.startDate = startDate;

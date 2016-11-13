@@ -17,8 +17,7 @@ public class StayWriter{
 
   /**
    * Constructor that greates new objects of type StayWriter.
-   * @param  fileString [description]
-   * @return            [description]
+   * @param  fileString The string that represents the URI the stays.csv file.
    */
   public StayWriter(String fileString){
     this.fileString = fileString;

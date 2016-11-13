@@ -21,7 +21,6 @@ public class RoomType{
    * @param   occupancyMin The minimum occupancy for this room type.
    * @param   occupancyMax The maximum occupancy for this room type.
    * @param   dailyCosts An array of douvles that stores the cost of staying in this type of room for each night of the week.
-   * @return  [description]
    */
   public RoomType(String type, int numberOfRooms, String occupancyMin, String occupancyMax, double[] dailyCosts){
     this.type = type;

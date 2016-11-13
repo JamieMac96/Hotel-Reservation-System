@@ -33,9 +33,9 @@ public class ReservationReader{
   }
 
 /**
- *
+ * This method finds a reservation with the input reservation number.
  * @param reservationNumber The reservation number of the reservation we are searching for.
- * @return
+ * @return The reservation that corresponds to the reservationNumber entered or null.
  */
   public Reservation findReservation(int reservationNumber){
     for(int i = 0; i < reservations.size(); i++){

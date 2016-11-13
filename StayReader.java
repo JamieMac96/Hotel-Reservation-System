@@ -96,7 +96,7 @@ public class StayReader{
   /**
    *
    * @param roomNumbers
-   * @return
+   * @return rooms The rooms for that particular reservation.
    */
     private Room[] getRooms(String roomInfo){
       String [] roomSplit = roomInfo.split("\\*");

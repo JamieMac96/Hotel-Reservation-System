@@ -76,7 +76,7 @@ public class CancellationReader{
   /**
    *
    * @param roomNumbers
-   * @return
+   * @return rooms The rooms for the particular reservation.
    */
    private Room[] getRooms(String roomInfo){
      String [] roomSplit = roomInfo.split("\\*");

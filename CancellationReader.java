@@ -29,7 +29,7 @@ public class CancellationReader{
   /**
    * Returns the total loss of revenue as a result of cancellations on a specific day.
    * @param  chosenDate The date that we are calculating loss of revenue for.
-   * @return  cancellationCosts the total loss of revenue on the given date.
+   * @return  cancellationCosts The total loss of revenue on the given date.
    */
   public double costForDate(Date chosenDate){
     double cancellationCosts = 0;

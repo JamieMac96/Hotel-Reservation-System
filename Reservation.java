@@ -184,10 +184,10 @@ public class Reservation{
 
   /**
    * This method  calculates the total cost of the reservation and sets totalCost to the result.
-   * @param  hReaderWithRoomData The hotelReader used to calculate the cost of certain rooms.
+   * @param  hReader The hotelReader used to calculate the cost of certain rooms.
    * @return totalCost The total cost of the reservation.
    */
-  public double calculateTotalCost(HotelReader hReaderWithRoomData){
+  public double calculateTotalCost(HotelReader hReader){
 
     ArrayList<RoomType> roomTypeList = hReaderWithRoomData.getAllRoomTypes();
     int dayOfWeekIndex = checkInDate.getDayOfWeekIndex();

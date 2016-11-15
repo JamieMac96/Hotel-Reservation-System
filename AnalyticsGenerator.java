@@ -204,9 +204,7 @@ public class AnalyticsGenerator{
     int numberOfRooms = 0;
     for(int i = 0; i < stayDetails.size(); i++){
       if(isInDateRange(currentDate, stayDetails.get(i).getCheckInDate(), stayDetails.get(i).getCheckOutDate())){
-        if(roomType.getType().equals(stayDetails.get(i).getFirstRoomType())){
-          numberOfRooms += stayDetails.get(i).getNumberOfRooms();
-        }
+        numberOfRooms += stayDetails.get(i).getNumberOfRoomsOfType(roomType.getType());
       }
     }
     return numberOfRooms;

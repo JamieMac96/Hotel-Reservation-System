@@ -266,6 +266,22 @@ public class Date{
     return daysSinceStartOfYear;
   }
 
+  /**
+   * This method checks if two dates are equal
+   * @param  comparisonDate the date we are checking.
+   * @return boolean whether or not the two dates are equal.
+   */
+  public boolean equals(Date comparisonDate){
+    int cYear = comparisonDate.getYear();
+    int cMonth = comparisonDate.getMonth();
+    int cDay = comparisonDate.getDay();
+    int day = getDay();
+    int month = getMonth();
+    int year = getYear();
+
+    return ((cYear == year) && (cMonth == month) && (cDay == day));
+  }
+
   private int dateComponentToInteger(int componentIndex){
     String [] dateSplit = date.split("-");
     return Integer.parseInt(dateSplit[componentIndex]);
@@ -311,17 +327,6 @@ public class Date{
     }
 
     return beforeOrEqual;
-  }
-
-  private boolean equals(Date comparisonDate){
-    int cYear = comparisonDate.getYear();
-    int cMonth = comparisonDate.getMonth();
-    int cDay = comparisonDate.getDay();
-    int day = getDay();
-    int month = getMonth();
-    int year = getYear();
-
-    return ((cYear == year) && (cMonth == month) && (cDay == day));
   }
 
 }

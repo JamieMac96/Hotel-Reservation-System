@@ -150,6 +150,21 @@ public class Reservation{
     return rooms[0].getRoomType();
   }
 
+  /**
+   * This method returns the number of rooms of a certain type for a reservation.
+   * @param  rType The type of room we are searching for.
+   * @return  int The number of rooms of the chosen type.
+   */
+  public int getNumberOfRoomsOfType(String rType){
+    int roomCount = 0;
+    for(int i = 0; i < rooms.length; i++){
+      if(rooms[i].getRoomType().equals(rType)){
+        roomCount++;
+      }
+    }
+    return roomCount;
+  }
+
 
   /**
    * This method sets the rooms reserved.
@@ -189,7 +204,7 @@ public class Reservation{
    */
   public double calculateTotalCost(HotelReader hReader){
 
-    ArrayList<RoomType> roomTypeList = hReaderWithRoomData.getAllRoomTypes();
+    ArrayList<RoomType> roomTypeList = hReader.getAllRoomTypes();
     int dayOfWeekIndex = checkInDate.getDayOfWeekIndex();
     double totalCost = 0;
     String roomTypeFromFile, roomTypeFromUserInput;

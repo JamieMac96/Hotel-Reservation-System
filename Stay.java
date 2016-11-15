@@ -86,6 +86,15 @@ public class Stay{
   }
 
   /**
+   * This method returns the number of rooms of a certain type for a stay.
+   * @param  rType The type of room we are searching for.
+   * @return   The number of rooms of the chosen type.
+   */
+  public int getNumberOfRoomsOfType(String rType){
+    return reservation.getNumberOfRoomsOfType(rType);
+  }
+
+  /**
    * This method returns a string representing the stay(compatable for csv use).
    * @return A string representing the stay.
    */
@@ -107,4 +116,5 @@ public class Stay{
   public boolean equals(Stay stay){
     return stay.getReservation().equals(reservation);
   }
+
 }

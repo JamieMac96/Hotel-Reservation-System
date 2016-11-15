@@ -29,3 +29,8 @@ Explaination of analytics:
 	-Hotel occupancy: The hotel occupancy is very similar to the room occupancy but instead of the columns representing room types,
 			  they represent different hotels.
 	  
+details about validation:
+  -A chekin has to happen on the correct day but a checkout can happen on any day because we assume that in real life the customer will leave on time or be kicked out.
+  -If the user enters a room type that doesn't exist then the reservation cost will be zero. This can be considered an invalid reservation.
+  -It is up to the user to input a correct room occupancy for a specified room. The format is validated but not the value.
+  -The daterange isValid method specifies that a daterange cannot span into the future.

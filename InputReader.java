@@ -87,6 +87,10 @@ public class InputReader{
     reservationType = getValidReservationType();
     System.out.print("Enter the check in date: ");
     checkInDate = getValidDate();
+    while(!checkInDate.equals(Date.getCurrentDate()) && !checkInDate.isFutureDate()){
+      System.out.print("Error, you cannot reserve rooms for past dates, try again: ");
+      checkInDate = getValidDate();
+    }
     System.out.print("Enter the number of nights: ");
     numberOfNights = getValidNumber();
     System.out.print("Enter the number of rooms: ");
